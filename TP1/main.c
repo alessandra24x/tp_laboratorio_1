@@ -8,9 +8,9 @@ int main()
 {
     int menuOption;
     int exit=0;
-    char aValue[50]="                                              ";
+    char aValue[50]="    20.2                                      ";
     char bValue[50]="                                              ";
-
+    float aux;
     while(exit==0)
     {
         views_drawHome(aValue,bValue);
@@ -19,6 +19,9 @@ int main()
         switch(menuOption)
         {
         case 1:
+
+            aux=atof(aValue);
+            printf("%.2f\n",aux);
             system("pause");
             break;
         case 2:

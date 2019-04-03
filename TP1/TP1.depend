@@ -12,10 +12,14 @@
 	<string.h>
 	<ctype.h>
 
-1554311804 source:d:\venv\tp_laboratorio_1\tp1\aritmetics.c
+1554315755 source:d:\venv\tp_laboratorio_1\tp1\aritmetics.c
 	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	"utn.h"
 
-1554311804 source:d:\venv\tp_laboratorio_1\tp1\main.c
+1554315976 source:d:\venv\tp_laboratorio_1\tp1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"utn.h"

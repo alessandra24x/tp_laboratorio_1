@@ -12,7 +12,7 @@ int getValidNumber(char*pResult)
     buffer[strlen(buffer)-1]='\0';
     if(utn_isFloat(buffer))
     {
-        *pResult = atoi(buffer);
+        *pResult = atof(buffer);
         ret=1;
     }
     return ret;
