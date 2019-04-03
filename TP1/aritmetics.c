@@ -1,5 +1,33 @@
+#include <stdio.h>
+int getSum(void)
+{
+    printf("Funcion sin programar");
 
-int utn_getFactorial(int number,unsigned long long*pFactorial)
+    return 0;
+}
+
+int getDiference(void)
+{
+    printf("Funcion sin programar");
+
+    return 0;
+}
+
+int getProduct(void)
+{
+    printf("Funcion sin programar");
+
+    return 0;
+}
+
+int getDividend(void)
+{
+    printf("Funcion sin programar");
+
+    return 0;
+}
+
+int getFactorial(int number,double*pFactorial)
 {
     int ret=-1;
     int i;
@@ -18,5 +46,3 @@ int utn_getFactorial(int number,unsigned long long*pFactorial)
     }
     return ret;
 }
-
-

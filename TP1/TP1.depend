@@ -12,3 +12,27 @@
 	<string.h>
 	<ctype.h>
 
+1554292640 source:d:\venv\tp_laboratorio_1\tp1\aritmetics.c
+
+1554292640 source:d:\venv\tp_laboratorio_1\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"aritmrtics.h"
+	"views.h"
+
+1554286872 d:\venv\tp_laboratorio_1\tp1\utn.h
+
+1554292640 d:\venv\tp_laboratorio_1\tp1\aritmrtics.h
+
+1554291182 d:\venv\tp_laboratorio_1\tp1\views.h
+
+1554286872 source:d:\venv\tp_laboratorio_1\tp1\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1554291589 source:d:\venv\tp_laboratorio_1\tp1\views.c
+	<stdio.h>
+	<stdlib.h>
+
