@@ -3,6 +3,7 @@
 
 void views_drawHome(char*aValue,char*bValue)
 {
+    system("clear");
     system("cls");
     printf("\n         *************************************************************");
     printf("\n         *               :: C A L C U L A D O R A ::                 *");
@@ -19,6 +20,8 @@ void views_drawHome(char*aValue,char*bValue)
     printf("\n         *       3.- Suma                     7.- Factorial          *");
     printf("\n         *                                                           *");
     printf("\n         *       4.- Resta                    8.- Borrar             *");
+    printf("\n         *                                                           *");
+    printf("\n         *                    9.- Salir                              *");
     printf("\n         *                                                           *");
     printf("\n         *************************************************************");
     printf("\n                     Nota: Solo funciona con numeros enteros");

@@ -6,43 +6,59 @@
 
 int main()
 {
+    int menuOption;
+    int exit=0;
     char aValue[50]="                                              ";
     char bValue[50]="                                              ";
-    views_drawHome(aValue,bValue);
 
-    int menuOption;
-    scanf("%d",&menuOption);
-    switch(menuOption)
+    while(exit==0)
     {
-    case 1:
-        break;
-    case 2:
-        break;
-    case 3:
-        getSum();
-        break;
-    case 4:
-        getDiference();
-        break;
-    case 5:
-        getProduct();
-        break;
-    case 6:
-        getDividend();
-        break;
-    case 7:
-        //getFactorial();
-        break;
-    case 8:
-        break;
-    default:
-        printf("Opcion invalida");
-        break;
+        views_drawHome(aValue,bValue);
+        scanf("%d",&menuOption);
+        //printf("%d",menuOption);
+        switch(menuOption)
+        {
+        case 1:
+            system("pause");
+            break;
+        case 2:
+            system("pause");
+            break;
+        case 3:
+            getSum();
+            system("pause");
+            break;
+        case 4:
+            getDiference();
+            system("pause");
+            break;
+        case 5:
+            getProduct();
+            system("pause");
+            break;
+        case 6:
+            getDividend();
+            system("pause");
+            break;
+        case 7:
+            //getFactorial();
+            system("pause");
+            break;
+        case 8:
+            //Borra todo
+            break;
+        case 9:
+            exit=1;
+            break;
+        default:
+            printf("Opcion invalida");
+            system("pause");
+            break;
+        }
+        fflush(stdin);
     }
 
-    double result;
-    getFactorial(10,&result);
-    printf("\nEl factorial es: %.0lf",result);
+
 
     return 0;
 }

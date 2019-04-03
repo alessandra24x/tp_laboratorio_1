@@ -2,33 +2,58 @@
 #include <stdlib.h>
 #include <string.h>
 
-int utn_esNumerica(char* cadena)
+int utn_isInt(char* number)
 {
     int ret=-1;
     int i=0;
-    if(cadena!=NULL)
+    if(number!=NULL)
     {
-        while(cadena[i]!='\0')
+        while(number[i]!='\0')
         {
-            if(cadena[i]<'0' || cadena[i]>'9')
+            if(number[i]<'0' || number[i]>'9')
                 break;
             i++;
         }
-        if(cadena[i]=='\0')
+        if(number[i]=='\0')
             ret=1;
     }
     return ret;
 }
 
-int utn_getInt(int* pResultado)
+int utn_isFloat(char* number)
+{
+    int dotCounter=0;
+    int ret=-1;
+    int i=0;
+    if(number!=NULL)
+    {
+        while(number[i]!='\0')
+        {
+            if(number[i]=='.')
+            {
+                dotCounter++;
+            }
+            if(number[i]<'0' || number[i]>'9'|| number[i]!='.'||dotCounter>1)
+            {
+                break;
+            }
+            i++;
+        }
+        if(number[i]=='\0')
+            ret=1;
+    }
+    return ret;
+}
+
+int utn_getInt(int* pResult)
 {
     int ret=-1;
     char buffer[8];
     fgets(buffer,sizeof(buffer),stdin);
     buffer[strlen(buffer)-1]='\0';
-    if(utn_esNumerica(buffer))
+    if(utn_isInt(buffer))
     {
-        *pResultado = atoi(buffer);
+        *pResult = atoi(buffer);
         ret=1;
     }
     return ret;
@@ -40,7 +65,7 @@ int unt_getFloat(float*pResult)
     char buffer[8];
     fgets(buffer,sizeof(buffer),stdin);
     buffer[strlen(buffer)-1]='\0';
-    if(utn_esNumerica(buffer))
+    if(utn_isFloat(buffer))
     {
         *pResult = atoi(buffer);
         ret=1;
@@ -48,7 +73,7 @@ int unt_getFloat(float*pResult)
     return ret;
 }
 
-int utn_getNumero(int* pResultado,char* mensaje,char* mensajeError,int minimo,int maximo,int reintentos)
+int utn_getNumber(int* pResult,char* mensaje,char* mensajeError,int minimo,int maximo,int reintentos)
 {
     int ret;
     int num;
@@ -70,9 +95,7 @@ int utn_getNumero(int* pResultado,char* mensaje,char* mensajeError,int minimo,in
     else
     {
         ret=0;
-        *pResultado = num;
+        *pResult = num;
     }
     return ret;
 }
-
-

@@ -1,28 +1,47 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "utn.h"
+
+int getValidNumber(char*pResult)
+{
+    int ret=-1;
+    char buffer[8];
+    fgets(buffer,sizeof(buffer),stdin);
+    buffer[strlen(buffer)-1]='\0';
+    if(utn_isFloat(buffer))
+    {
+        *pResult = atoi(buffer);
+        ret=1;
+    }
+    return ret;
+}
+
 int getSum(void)
 {
-    printf("Funcion sin programar");
+    printf("Funcion suma sin programar\n");
 
     return 0;
 }
 
 int getDiference(void)
 {
-    printf("Funcion sin programar");
+    printf("Funcion resta sin programar\n");
 
     return 0;
 }
 
 int getProduct(void)
 {
-    printf("Funcion sin programar");
+    printf("Funcion multiplicacion sin programar\n");
 
     return 0;
 }
 
 int getDividend(void)
 {
-    printf("Funcion sin programar");
+    printf("Funcion division sin programar\n");
 
     return 0;
 }
