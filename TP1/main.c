@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "utn.h"
-#include "aritmrtics.h"
+#include "calc.h"
 #include "views.h"
 
 int main()
@@ -14,47 +13,46 @@ int main()
     {
         views_drawHome(aValue,bValue);
         scanf("%d",&menuOption);
-        //printf("%d",menuOption);
         switch(menuOption)
         {
         case 1:
-            utn_getNumberFloat(&aValue,"Ingrese el numero A: ","\nError, numero invalido",10);
-            printf("%f\n",aValue);
-            system("pause");
+            utn_getNumberFloat(&aValue,"Ingrese el numero A: ","\nError, numero invalido\n",10);
+            //myPause();
             break;
         case 2:
-            utn_getNumberFloat(&bValue,"Ingrese el numero A: ","\nError, numero invalido",10);
-            system("pause");
+            utn_getNumberFloat(&bValue,"Ingrese el numero B: ","\nError, numero invalido\n",10);
+            //myPause();
             break;
         case 3:
-            getSum();
-            system("pause");
+            getSum(&aValue,&bValue);
+            myPause();
             break;
         case 4:
-            getDiference();
-            system("pause");
+            getDiference(&aValue,&bValue);
+            myPause();
             break;
         case 5:
-            getProduct();
-            system("pause");
+            getProduct(&aValue,&bValue);
+            myPause();
             break;
         case 6:
-            getDividend();
-            system("pause");
+            getDividend(&aValue,&bValue);
+            myPause();
             break;
         case 7:
-            //getFactorial();
-            system("pause");
+            getFactorial(aValue);
+            myPause();
             break;
         case 8:
-            //Borra todo
+            aValue=0;
+            bValue=0;
             break;
         case 9:
             exit=1;
             break;
         default:
             printf("Opcion invalida\n");
-            system("pause");
+            myPause();
             break;
         }
         fflush(stdin);

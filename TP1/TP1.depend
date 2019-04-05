@@ -12,32 +12,39 @@
 	<string.h>
 	<ctype.h>
 
-1554386542 source:d:\venv\tp_laboratorio_1\tp1\aritmetics.c
+1554468453 source:d:\venv\tp_laboratorio_1\tp1\aritmetics.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 	<ctype.h>
 	"utn.h"
 
-1554401063 source:d:\venv\tp_laboratorio_1\tp1\main.c
+1554489842 source:d:\venv\tp_laboratorio_1\tp1\main.c
 	<stdio.h>
 	<stdlib.h>
-	"utn.h"
-	"aritmrtics.h"
+	"calc.h"
 	"views.h"
 
-1554386481 d:\venv\tp_laboratorio_1\tp1\utn.h
+1554460154 d:\venv\tp_laboratorio_1\tp1\utn.h
 
-1554294296 d:\venv\tp_laboratorio_1\tp1\aritmrtics.h
+1554468554 d:\venv\tp_laboratorio_1\tp1\aritmrtics.h
 
 1554386026 d:\venv\tp_laboratorio_1\tp1\views.h
 
-1554401385 source:d:\venv\tp_laboratorio_1\tp1\utn.c
+1554465379 source:d:\venv\tp_laboratorio_1\tp1\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1554386002 source:d:\venv\tp_laboratorio_1\tp1\views.c
+1554486781 source:d:\venv\tp_laboratorio_1\tp1\views.c
 	<stdio.h>
 	<stdlib.h>
+	"calc.h"
+
+1554490105 source:d:\venv\tp_laboratorio_1\tp1\calc.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1554489901 d:\venv\tp_laboratorio_1\tp1\calc.h
 

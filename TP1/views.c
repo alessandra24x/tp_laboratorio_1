@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "calc.h"
 
 void views_drawHome(float aValue,float bValue)
 {
-    system("clear");
-    system("cls");     //Windows
+    clrscr();
     printf("\n         *************************************************************");
     printf("\n                         :: C A L C U L A D O R A ::                  ");
     printf("\n         *************************************************************");

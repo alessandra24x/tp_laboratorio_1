@@ -31,17 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="aritmetics.c">
+		<Unit filename="calc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="aritmrtics.h" />
+		<Unit filename="calc.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="utn.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="utn.h" />
 		<Unit filename="views.c">
 			<Option compilerVar="CC" />
 		</Unit>
