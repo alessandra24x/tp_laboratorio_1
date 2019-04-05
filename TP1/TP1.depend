@@ -12,32 +12,32 @@
 	<string.h>
 	<ctype.h>
 
-1554315755 source:d:\venv\tp_laboratorio_1\tp1\aritmetics.c
+1554386542 source:d:\venv\tp_laboratorio_1\tp1\aritmetics.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 	<ctype.h>
 	"utn.h"
 
-1554315976 source:d:\venv\tp_laboratorio_1\tp1\main.c
+1554401063 source:d:\venv\tp_laboratorio_1\tp1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"utn.h"
 	"aritmrtics.h"
 	"views.h"
 
-1554295730 d:\venv\tp_laboratorio_1\tp1\utn.h
+1554386481 d:\venv\tp_laboratorio_1\tp1\utn.h
 
 1554294296 d:\venv\tp_laboratorio_1\tp1\aritmrtics.h
 
-1554291182 d:\venv\tp_laboratorio_1\tp1\views.h
+1554386026 d:\venv\tp_laboratorio_1\tp1\views.h
 
-1554302697 source:d:\venv\tp_laboratorio_1\tp1\utn.c
+1554401385 source:d:\venv\tp_laboratorio_1\tp1\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1554311152 source:d:\venv\tp_laboratorio_1\tp1\views.c
+1554386002 source:d:\venv\tp_laboratorio_1\tp1\views.c
 	<stdio.h>
 	<stdlib.h>
 

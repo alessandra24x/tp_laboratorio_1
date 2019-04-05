@@ -8,9 +8,8 @@ int main()
 {
     int menuOption;
     int exit=0;
-    char aValue[50]="    20.2                                      ";
-    char bValue[50]="                                              ";
-    float aux;
+    float aValue=0;
+    float bValue=0;
     while(exit==0)
     {
         views_drawHome(aValue,bValue);
@@ -19,12 +18,12 @@ int main()
         switch(menuOption)
         {
         case 1:
-
-            aux=atof(aValue);
-            printf("%.2f\n",aux);
+            utn_getNumberFloat(&aValue,"Ingrese el numero A: ","\nError, numero invalido",10);
+            printf("%f\n",aValue);
             system("pause");
             break;
         case 2:
+            utn_getNumberFloat(&bValue,"Ingrese el numero A: ","\nError, numero invalido",10);
             system("pause");
             break;
         case 3:
@@ -54,7 +53,7 @@ int main()
             exit=1;
             break;
         default:
-            printf("Opcion invalida");
+            printf("Opcion invalida\n");
             system("pause");
             break;
         }

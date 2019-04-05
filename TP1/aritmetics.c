@@ -4,20 +4,6 @@
 #include <ctype.h>
 #include "utn.h"
 
-int getValidNumber(char*pResult)
-{
-    int ret=-1;
-    char buffer[8];
-    fgets(buffer,sizeof(buffer),stdin);
-    buffer[strlen(buffer)-1]='\0';
-    if(utn_isFloat(buffer))
-    {
-        *pResult = atof(buffer);
-        ret=1;
-    }
-    return ret;
-}
-
 int getSum(void)
 {
     printf("Funcion suma sin programar\n");

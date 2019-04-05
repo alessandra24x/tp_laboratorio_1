@@ -59,15 +59,15 @@ int utn_getInt(int* pResult)
     return ret;
 }
 
-int unt_getFloat(float*pResult)
+int utn_getFloat(float*pResult)
 {
     int ret=-1;
-    char buffer[8];
+    char buffer[16];
     fgets(buffer,sizeof(buffer),stdin);
     buffer[strlen(buffer)-1]='\0';
     if(utn_isFloat(buffer))
     {
-        *pResult = atoi(buffer);
+        *pResult = atof(buffer);
         ret=1;
     }
     return ret;
@@ -84,6 +84,34 @@ int utn_getNumber(int* pResult,char* mensaje,char* mensajeError,int minimo,int m
         {
             if(num<=maximo && num>=minimo)
                 break;
+        }
+        reintentos--;
+        printf("%s",mensajeError);
+    }
+    if(reintentos==0)
+    {
+        ret=-1;
+    }
+    else
+    {
+        ret=0;
+        *pResult = num;
+    }
+    return ret;
+}
+
+int utn_getNumberFloat(float* pResult,char* mensaje,char* mensajeError,int reintentos)
+{
+    int ret;
+    float num;
+    while(reintentos>0)
+    {
+        fflush(stdin);
+        printf("%s",mensaje);
+        if(utn_getFloat(&num)==1)
+        {
+            printf("%f",num);
+            break;
         }
         reintentos--;
         printf("%s",mensajeError);
