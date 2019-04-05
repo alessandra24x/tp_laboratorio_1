@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+
+void clean_stdin(void)
+{
+    int c;
+    do
+    {
+        c = getchar();
+    }
+    while (c != '\n' && c != EOF);
+}
 
 void clrscr(void)
 {
@@ -9,7 +20,7 @@ void clrscr(void)
 
 void myPause(void)
 {
-    fflush(stdin);
+    clean_stdin();
     printf("\nPresione enter para continuar");
     getchar();
 }
@@ -58,31 +69,53 @@ int getDividend(float*aValue,float*bValue)
 
 int getFactorial(float number)
 {
-    /*if (roundf(z) == z) {
-    printf("integer\n");
-    } else {
-    printf("fraction\n");
-    }*/
     double factorial=1;
     int ret=-1;
     int i;
-
-    if (number < 0)
+    if (roundf(number) == number)
     {
-        printf("Numero invalido\n");
-        ret=-1;
+        if (number < 0)
+        {
+            printf("El numero %.2f es negativo\n",number);
+            ret=-1;
+        }
+        else
+        {
+            for(i=1; i<=number; ++i)
+            {
+                factorial *= i;
+            }
+            printf("El factorial de %.2f es: %.0lf\n",number,factorial);
+        }
+        //printf("integer\n");
     }
     else
     {
-        for(i=1; i<=number; ++i)
-        {
-            factorial *= i;
-        }
-        printf("El factorial de A es:%.2lf  y El factorial de B es: r2",factorial);
+        printf("El numero %.2f no es entero\n",number);
     }
+
+    /*   if (number < 0)
+       {
+           printf("Numero invalido\n");
+           ret=-1;
+       }
+       else
+       {
+           for(i=1; i<=number; ++i)
+           {
+               factorial *= i;
+           }
+           printf("El factorial de A es:%.2lf  y El factorial de B es: r2",factorial);
+       }*/
     return ret;
 }
 
+int calculateFactorial(float aValue, float bValue)
+{
+    getFactorial(aValue);
+    getFactorial(bValue);
+    return 0;
+}
 
 int utn_isFloat(char* number)
 {
@@ -97,7 +130,7 @@ int utn_isFloat(char* number)
             {
                 dotCounter++;
             }
-            if((number[i]<'0' || number[i]>'9')&&(number[i]!='.'||dotCounter>1))
+            if((number[i]<'0' || number[i]>'9')&&(number[i]!='.'||dotCounter>1)&&number[i]!='-')
             {
                 break;
             }
@@ -129,7 +162,7 @@ int utn_getNumberFloat(float* pResult,char* mensaje,char* mensajeError,int reint
     float num;
     while(reintentos>0)
     {
-        fflush(stdin);
+        clean_stdin();
         printf("%s",mensaje);
         if(utn_getFloat(&num)==1)
         {

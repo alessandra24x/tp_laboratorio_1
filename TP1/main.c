@@ -40,7 +40,7 @@ int main()
             myPause();
             break;
         case 7:
-            getFactorial(aValue);
+            calculateFactorial(aValue,bValue);
             myPause();
             break;
         case 8:
@@ -55,7 +55,7 @@ int main()
             myPause();
             break;
         }
-        fflush(stdin);
+        clean_stdin();
     }
 
 

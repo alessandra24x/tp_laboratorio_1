@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1554236334 source:/home/matias/utn/tp_laboratorio_1/TP1/main.c
+1554501594 source:/home/matias/utn/tp_laboratorio_1/TP1/main.c
 	<stdio.h>
 	<stdlib.h>
-	"utn.h"
+	"calc.h"
+	"views.h"
 
 1554235878 /home/matias/utn/tp_laboratorio_1/TP1/utn.h
 
@@ -47,4 +48,19 @@
 	<string.h>
 
 1554489901 d:\venv\tp_laboratorio_1\tp1\calc.h
+
+1554501733 source:/home/matias/utn/tp_laboratorio_1/TP1/calc.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+
+1554501271 /home/matias/utn/tp_laboratorio_1/TP1/calc.h
+
+1554499403 /home/matias/utn/tp_laboratorio_1/TP1/views.h
+
+1554500447 source:/home/matias/utn/tp_laboratorio_1/TP1/views.c
+	<stdio.h>
+	<stdlib.h>
+	"calc.h"
 
