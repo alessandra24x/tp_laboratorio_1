@@ -38,7 +38,6 @@ int getDiference(float*aValue,float*bValue)
     float result;
     result=(*aValue)-(*bValue);
     printf("El resultado de %.2f-%.2f es: %.2f\n",*aValue,*bValue,result);
-
     return 0;
 }
 
@@ -47,30 +46,31 @@ int getProduct(float*aValue,float*bValue)
     float result;
     result=(*aValue)*(*bValue);
     printf("El resultado de %.2f*%.2f es: %.2f\n",*aValue,*bValue,result);
-
     return 0;
 }
 
 int getDividend(float*aValue,float*bValue)
 {
+    int ret;
     if(*bValue)
     {
         float result;
         result=(*aValue)*(*bValue);
         printf("El resultado de %.2f/%.2f es: %.2f\n",*aValue,*bValue,result);
+        ret=1;
     }
     else
     {
         printf("No es posible dividir por cero\n");
+        ret=0;
     }
-
-    return 0;
+    return ret;
 }
 
 int getFactorial(float number)
 {
     double factorial=1;
-    int ret=-1;
+    int ret;
     int i;
     if (roundf(number) == number)
     {
@@ -86,27 +86,14 @@ int getFactorial(float number)
                 factorial *= i;
             }
             printf("El factorial de %.2f es: %.0lf\n",number,factorial);
+            ret=1;
         }
-        //printf("integer\n");
     }
     else
     {
         printf("El numero %.2f no es entero\n",number);
+        ret=-2;
     }
-
-    /*   if (number < 0)
-       {
-           printf("Numero invalido\n");
-           ret=-1;
-       }
-       else
-       {
-           for(i=1; i<=number; ++i)
-           {
-               factorial *= i;
-           }
-           printf("El factorial de A es:%.2lf  y El factorial de B es: r2",factorial);
-       }*/
     return ret;
 }
 

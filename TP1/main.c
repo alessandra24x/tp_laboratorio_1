@@ -1,3 +1,15 @@
+/*******************************************************************
+*Programa:Trabajo practico 1, Calculadora.
+*
+*Objetivo:
+*       Realizar un acalculadora que resuelva suma, resta,
+*       multiplicacion, division y factorial de dos numeros
+*
+*Version:0.1 del 05 abril 2019
+*
+*Autor:Suarez Murray Matias
+*
+********************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include "calc.h"
@@ -6,10 +18,10 @@
 int main()
 {
     int menuOption;
-    int exit=0;
+    int exit=1;
     float aValue=0;
     float bValue=0;
-    while(exit==0)
+    while(exit)
     {
         views_drawHome(aValue,bValue);
         scanf("%d",&menuOption);
@@ -48,7 +60,7 @@ int main()
             bValue=0;
             break;
         case 9:
-            exit=1;
+            exit=0;
             break;
         default:
             printf("Opcion invalida\n");
@@ -57,9 +69,6 @@ int main()
         }
         clean_stdin();
     }
-
-
-
     return 0;
 }
 
