@@ -24,7 +24,6 @@ void views_drawHome(float aValue,float bValue)
     printf("\n                                 9.- Salir                            ");
     printf("\n");
     printf("\n         *************************************************************");
-    printf("\n                     Nota: Solo funciona con numeros enteros");
     printf("\n");
     printf("\n                              Elija una opcion: ");
 }
