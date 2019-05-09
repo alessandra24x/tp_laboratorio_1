@@ -20,7 +20,11 @@ int initEmployees(Employee* list, int len)
     {
         for(i=0;i<len;i++)
         {
-            list[i].isEmpty = 0;
+            list[i].id=0;
+            list[i].isEmpty = 1;
+            strcpy(list[i].name,"");
+            list[i].salary=0;
+            list[i].sector=0;
         }
         ret=0;
     }
@@ -45,7 +49,8 @@ int addEmployee(Employee* list, int len, int id, char name[],char lastName[],flo
     int ret= -1;
     if(list!=NULL&&len>0)
     {
-        for(i=0;i<len;i++)
+        i=findFree(list,len);
+        if(i>=0)
         {
             list[i].id=id;
             list[i].isEmpty=0;
@@ -53,8 +58,12 @@ int addEmployee(Employee* list, int len, int id, char name[],char lastName[],flo
             list[i].sector=sector;
             strncpy(list[i].name,name,sizeof(list[0].name));
             strncpy(list[i].lastName,lastName,sizeof(list[0].lastName));
+            ret=0;
         }
-        ret=0;
+        else
+        {
+            printf("No hay espacio libre");
+        }
     }
     return ret;
 }
@@ -106,25 +115,54 @@ int removeEmployee(Employee* list, int len, int id)
     return ret;
 }
 
-/** \brief Sort the elements in the array of employees, the argument order
-indicate UP or DOWN order
+/** \brief Sort the elements in the array of employees, the argument order indicate UP or DOWN order
  *
  * \param list Employee*
  * \param len int
  * \param order int [1] indicate UP - [0] indicate DOWN
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
- *//*
+ */
 int sortEmployees(Employee* list, int len, int order)
 {
-    int i,j;
+    int i;
+    int swap;
     int ret= -1;
-    if(list!=NULL && len>0)
+    if(list!=NULL && len>0 && (order==0 || order==1))
     {
-
+        do
+        {
+            swap=0;
+            for(i=0;i<len-1;i++)
+            {
+                if(strcmp(list[i].name,list[i+1].name)==0)
+                {
+                    if(order==1 && list[i].sector<list[i+1].sector)
+                    {
+                        swapEmployee(list,i);
+                        swap=1;
+                    }
+                    if(order==0 && list[i].sector>list[i+1].sector)
+                    {
+                        swapEmployee(list,i);
+                        swap=1;
+                    }
+                }
+                if(order==1 && strcmp(list[i].name,list[i+1].name)>0)
+                {
+                    swapEmployee(list,i);
+                    swap=1;
+                }
+                if(order==0 && strcmp(list[i].name,list[i+1].name)<0)
+                {
+                    swapEmployee(list,i);
+                    swap=1;
+                }
+            }
+        }while(swap!=0);
     }
     return ret;
-}*/
+}
 
 /** \brief print the content of employees array
  *
@@ -141,7 +179,7 @@ int printEmployees(Employee* list, int length)
     {
         for(i=0;i<length;i++)
         {
-            if(!list[i].isEmpty)
+            if(list[i].isEmpty==0)
             {
                 printf("id: %d\nName: %s\nLastname: %s\nSalary %.2f\nSector: %d\n", list[i].id,
                                                                                     list[i].name,
@@ -155,11 +193,26 @@ int printEmployees(Employee* list, int length)
     return ret;
 }
 
-void swapEmployee(Employee* a,Employee* b)
+void swapEmployee(Employee* list,int i)
 {
-    Employee* buffer;
-    buffer=a;
-    a=b;
-    b=buffer;
+    Employee* buffer[1];
+    buffer[1]=list[i];
+    list[i]=list[i+1];
+    list[i+1]=buffer[1];
     return;
+}
+
+int findFree(Employee* list,int len)
+{
+    int i;
+    int ret=-1;
+    for(i=0;i<len;i++)
+    {
+        if(list[i].isEmpty==1)
+        {
+            ret=i;
+            break;
+        }
+    }
+    return ret;
 }

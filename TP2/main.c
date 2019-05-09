@@ -6,9 +6,15 @@
 
 int main()
 {
-    Employee employees[100];
-    initEmployees(employees,100);
-    addEmployee(employees,100,1,"test","test",10,1);
+    Employee employees[10];
+    initEmployees(employees,10);
+    addEmployee(employees,10,5,"test10","test",10,1);
+    addEmployee(employees,10,2,"test6","test",10,1);
+    addEmployee(employees,10,3,"test8","test",10,1);
+    addEmployee(employees,10,4,"test3","test",10,1);
+    addEmployee(employees,10,1,"test1","test",10,1);
+    sortEmployees(employees,10,1);
+    printEmployees(employees,10);
     printf("Hello world!\n");
     return 0;
 }

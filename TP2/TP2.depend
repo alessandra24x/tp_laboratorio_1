@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1557154333 source:d:\venv\tp_laboratorio_1\tp2\employee.c
+1557425873 source:d:\venv\tp_laboratorio_1\tp2\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	<string.h>
 	"Employee.h"
 
-1557164258 d:\venv\tp_laboratorio_1\tp2\employee.h
+1557424011 d:\venv\tp_laboratorio_1\tp2\employee.h
 
-1557154206 source:d:\venv\tp_laboratorio_1\tp2\main.c
+1557425451 source:d:\venv\tp_laboratorio_1\tp2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
