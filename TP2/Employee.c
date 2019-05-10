@@ -160,6 +160,7 @@ int sortEmployees(Employee* list, int len, int order)
                 }
             }
         }while(swap!=0);
+        ret=0;
     }
     return ret;
 }
@@ -195,10 +196,12 @@ int printEmployees(Employee* list, int length)
 
 void swapEmployee(Employee* list,int i)
 {
-    Employee* buffer[1];
-    buffer[1]=list[i];
-    list[i]=list[i+1];
-    list[i+1]=buffer[1];
+    Employee buffer1;
+    Employee buffer2;
+    buffer1=list[i];
+    buffer2=list[i+1];
+    list[i]=buffer2;
+    list[i+1]=buffer1;
     return;
 }
 
