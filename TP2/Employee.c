@@ -3,6 +3,17 @@
 #include <ctype.h>
 #include <string.h>
 #include "Employee.h"
+#include "utn.h"
+
+/** \brief Generate and keep track of the ids.
+ * \return int Return the next id to use.
+ *
+ */
+static int idGen(void)
+{
+    static int idMax=0;
+    return idMax++;
+}
 
 /** \brief To indicate that all position in the array are empty,
  * this function put the flag (isEmpty) in TRUE in all
@@ -109,7 +120,11 @@ int removeEmployee(Employee* list, int len, int id)
     index=findEmployeeById(list,len,id);
     if(list!=NULL && len>0 && index>=0)
     {
-        list[index].isEmpty=1;
+        list[index].id=0;
+        list[index].isEmpty = 1;
+        strcpy(list[index].name,"");
+        list[index].salary=0;
+        list[index].sector=0;
         ret=0;
     }
     return ret;
@@ -182,11 +197,11 @@ int printEmployees(Employee* list, int length)
         {
             if(list[i].isEmpty==0)
             {
-                printf("id: %d\nName: %s\nLastname: %s\nSalary %.2f\nSector: %d\n", list[i].id,
-                                                                                    list[i].name,
-                                                                                    list[i].lastName,
-                                                                                    list[i].salary,
-                                                                                    list[i].sector);
+                printf("id: %d\n1. Name: %s\n2. Lastname: %s\n3. Salary %.2f\n4. Sector: %d\n", list[i].id,
+                                                                                                list[i].name,
+                                                                                                list[i].lastName,
+                                                                                                list[i].salary,
+                                                                                                list[i].sector);
             }
 
         }
@@ -194,6 +209,13 @@ int printEmployees(Employee* list, int length)
     return ret;
 }
 
+/** \brief swap two positions in an array of employee datatype
+ *
+ * \param list Employee*
+ * \param length int
+ * \return void
+ *
+ */
 void swapEmployee(Employee* list,int i)
 {
     Employee buffer1;
@@ -205,6 +227,13 @@ void swapEmployee(Employee* list,int i)
     return;
 }
 
+/** \brief Find a free space in the array and return his position
+ *
+ * \param list Employee* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - The index of a free position in the array
+ *
+ */
 int findFree(Employee* list,int len)
 {
     int i;
@@ -216,6 +245,150 @@ int findFree(Employee* list,int len)
             ret=i;
             break;
         }
+    }
+    return ret;
+}
+
+/** \brief request to the users the information for a new employee
+ *
+ * \param list Employee*
+ * \param length int
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int getEmployee(Employee* list,int len)
+{
+    int ret=-1;
+    char bufferName[51];
+    char bufferLastname[51];
+    float bufferSalary;
+    int bufferSector;
+    int freeIndex=findFree(list,len);
+
+    if( !utn_getName(bufferName,51,"\nIngrese nombre: ","\nValor invalido",3,50,10)&&
+        !utn_getName(bufferLastname,50,"\nIngrese apellido: ","\nValor invalido",3,50,10)&&
+        !utn_getFloat(&bufferSalary,"\nIngrese salario: ","\nValor invalido",0,32000000,10)&&
+        !utn_getInt(&bufferSector,"\nIngrese sector: ","\nValor invalido",1,1000,10)&&
+        freeIndex>=0)
+    {
+        addEmployee(list,len,idGen(),bufferName,bufferLastname,bufferSalary,bufferSector);
+        ret=0;
+    }
+    return ret;
+}
+
+/** \brief Request an id and permits modify his parameters.
+ *
+ * \param list Employee*
+ * \param length int
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int updateEmployee(Employee *list,int len)
+{
+    int ret=-1;
+    int auxId;
+    int option;
+    char bufferName[51];
+    char bufferLastname[51];
+    float bufferSalary;
+    int bufferSector;
+    utn_getInt(&auxId,"\nIngrese id: ","\nValor invalido",0,9999,10);
+    if(findEmployeeById(list,len,auxId)>=0)
+    {
+
+        while(option!=5)
+        {
+            printEmployees(list,len);
+            printf("5. Salir");
+            utn_getInt(&option,"\nSeleccione campo a modificar: ","\nOpcion invalida",1,5,10);
+            switch(option)
+            {
+            case 1:
+            {
+                if(!utn_getName(bufferName,51,"\nIngrese nombre: ","\nValor invalido",3,50,10))
+                {
+                    strncpy(list[auxId].name,bufferName,50);
+                }
+                break;
+            }
+            case 2:
+            {
+                if(!utn_getName(bufferLastname,50,"\nIngrese apellido: ","\nValor invalido",3,50,10))
+                {
+                    strncpy(list[auxId].lastName,bufferLastname,50);
+                }
+                break;
+            }
+            case 3:
+            {
+                if(!utn_getFloat(&bufferSalary,"\nIngrese salario: ","\nValor invalido",0,32000000,10))
+                {
+                    list[auxId].salary=bufferSalary;
+                }
+                break;
+            }
+            case 4:
+            {
+                if(!utn_getInt(&bufferSector,"\nIngrese sector: ","\nValor invalido",1,1000,10))
+                {
+                    list[auxId].sector=bufferSector;
+                }
+                break;
+            }
+            }
+        }
+        ret=0;
+    }
+    else
+    {
+        printf("\nId invalido");
+    }
+    return ret;
+}
+
+/** \brief Find if exist a register of employee type
+ *
+ * \param list Employee* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int existEmployee(Employee* list,int len)
+{
+    int i;
+    int ret=-1;
+    for(i=0;i<len;i++)
+    {
+        if(list[i].isEmpty==0)
+        {
+            ret=0;
+            break;
+        }
+    }
+    return ret;
+}
+
+/** \brief Request an id and deletes the register.
+ *
+ * \param list Employee*
+ * \param length int
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int getDeleteEmployee(Employee *list,int len)
+{
+    int ret=-1;
+    int auxId;
+    utn_getInt(&auxId,"\nIngrese id: ","\nValor invalido",0,9999,10);
+    if(findEmployeeById(list,len,auxId)>=0)
+    {
+        removeEmployee(list,len,auxId);
+        ret=0;
+    }
+    else
+    {
+        printf("\nId invalido");
     }
     return ret;
 }

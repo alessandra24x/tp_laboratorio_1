@@ -31,3 +31,41 @@
 	<string.h>
 	"Employee.h"
 
+1557460222 source:c:\users\matty\documents\utn\tp_laboratorio_1\tp2\employee.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"Employee.h"
+	"utn.h"
+
+1557459938 c:\users\matty\documents\utn\tp_laboratorio_1\tp2\employee.h
+
+1557460165 source:c:\users\matty\documents\utn\tp_laboratorio_1\tp2\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"Employee.h"
+	"menu.h"
+	"utn.h"
+
+1557457624 c:\users\matty\documents\utn\tp_laboratorio_1\tp2\menu.h
+
+1557459034 source:c:\users\matty\documents\utn\tp_laboratorio_1\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"Employee.h"
+	"menu.h"
+
+1557454632 c:\users\matty\documents\utn\tp_laboratorio_1\tp2\utn.h
+
+1557454632 source:c:\users\matty\documents\utn\tp_laboratorio_1\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+

@@ -19,4 +19,8 @@ int sortEmployees(Employee* list, int len, int order);
 int printEmployees(Employee* list, int length);
 void swapEmployee(Employee* list,int i);
 int findFree(Employee* list,int len);
+int getEmployee(Employee* list,int len);
+int updateEmployee(Employee *list,int len);
+int existEmployee(Employee* list,int len);
+int getDeleteEmployee(Employee *list,int len);
 #endif // EMPLOYEE_H_INCLUDED
