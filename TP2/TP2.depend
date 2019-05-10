@@ -1,19 +1,21 @@
 # depslib dependency file v1.0
-1557425873 source:d:\venv\tp_laboratorio_1\tp2\employee.c
+1557487022 source:d:\venv\tp_laboratorio_1\tp2\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	<string.h>
 	"Employee.h"
+	"utn.h"
 
-1557424011 d:\venv\tp_laboratorio_1\tp2\employee.h
+1557483609 d:\venv\tp_laboratorio_1\tp2\employee.h
 
-1557425451 source:d:\venv\tp_laboratorio_1\tp2\main.c
+1557483610 source:d:\venv\tp_laboratorio_1\tp2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	<string.h>
 	"Employee.h"
+	"menu.h"
 
 1557447115 source:/home/murraymatias/sm/tp_laboratorio_1/TP2/Employee.c
 	<stdio.h>
@@ -63,6 +65,26 @@
 1557454632 c:\users\matty\documents\utn\tp_laboratorio_1\tp2\utn.h
 
 1557454632 source:c:\users\matty\documents\utn\tp_laboratorio_1\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1557483610 d:\venv\tp_laboratorio_1\tp2\utn.h
+
+1557483610 d:\venv\tp_laboratorio_1\tp2\menu.h
+
+1557487022 source:d:\venv\tp_laboratorio_1\tp2\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"Employee.h"
+	"menu.h"
+	"utn.h"
+
+1557483610 source:d:\venv\tp_laboratorio_1\tp2\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

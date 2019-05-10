@@ -8,7 +8,7 @@
 
 void menu_mainMenu(Employee* list,int len)
 {
-    int option;
+    int option, optionInf;
     while(option!=6)
     {
         printf("/-----------------\n1.ALTAS\n2.MODIFICAR\n3.BAJA\n4.INFORMES\n5.MOSTRAR\n6.SALIR");
@@ -41,7 +41,21 @@ void menu_mainMenu(Employee* list,int len)
         case 4:
             if(!existEmployee(list,len))
             {
-                //informes
+                while(optionInf!=3)
+                {
+                    printf("/-----------------\n1. Listado de los empleados ordenados alfabeticamente por Apellido y Sector\n2. Total y promedio de los salarios, y cuántos empleados superan el salario promedio.\n3.SALIR");
+                    utn_getInt(&optionInf,"\nSelecione una opcion: ","\nOpcion invalida",1,3,10);
+                    switch(optionInf)
+                    {
+                    case 1:
+                        sortEmployees(list,len,1);
+                        printEmployees(list,len);
+                        break;
+                    case 2:
+
+                        break;
+                    }
+                }
             }
             else
             {

@@ -152,23 +152,23 @@ int sortEmployees(Employee* list, int len, int order)
             {
                 if(strcmp(list[i].name,list[i+1].name)==0)
                 {
-                    if(order==1 && list[i].sector<list[i+1].sector)
+                    if(order==0 && list[i].sector<list[i+1].sector)
                     {
                         swapEmployee(list,i);
                         swap=1;
                     }
-                    if(order==0 && list[i].sector>list[i+1].sector)
+                    if(order==1 && list[i].sector>list[i+1].sector)
                     {
                         swapEmployee(list,i);
                         swap=1;
                     }
                 }
-                if(order==1 && strcmp(list[i].name,list[i+1].name)>0)
+                if(order==0 && strcmp(list[i].name,list[i+1].name)<0)
                 {
                     swapEmployee(list,i);
                     swap=1;
                 }
-                if(order==0 && strcmp(list[i].name,list[i+1].name)<0)
+                if(order==1 && strcmp(list[i].name,list[i+1].name)>0)
                 {
                     swapEmployee(list,i);
                     swap=1;
