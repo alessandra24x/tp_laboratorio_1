@@ -39,6 +39,31 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
     return ret;
 }
 
+int controller_lastIdEmployee(LinkedList* pArrayListEmployee)
+{
+    Employee* bufferEmployee;
+    int bufferId;
+    int auxId=-1;
+    int i;
+    int ret=0;
+    int len;
+    if(pArrayListEmployee!=NULL)
+    {
+        len=ll_len(pArrayListEmployee);
+        for(i=0;i<len;i++)
+        {
+            bufferEmployee=(Employee*)ll_get(pArrayListEmployee,i);
+            employee_getId(bufferEmployee,&bufferId);
+            if(bufferId>auxId)
+            {
+                auxId=bufferId;
+            }
+        }
+        employe_idInit(auxId);
+    }
+    return ret;
+}
+
 /** \brief Alta de empleados
  *
  * \param path char*

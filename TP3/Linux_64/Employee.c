@@ -4,6 +4,18 @@
 #include "utn.h"
 #include "Employee.h"
 
+static int lastId=0;
+
+void employe_idInit(int id)
+{
+    lastId=id;
+}
+
+int employee_idGenerator()
+{
+    return lastId++;
+}
+
 Employee* employee_new()
 {
     return (Employee*)malloc(sizeof(Employee));
