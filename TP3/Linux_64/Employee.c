@@ -15,10 +15,14 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
     aux=employee_new();
     if(aux!=NULL)
     {
-    employee_setIdStr(aux,idStr);
-    employee_setNombre(aux,nombreStr);
-    employee_setHorasTrabajadasStr(aux,horasTrabajadasStr);
-    employee_setSueldoStr(aux,sueldoStr);
+        if( employee_setIdStr(aux,idStr)||
+            employee_setNombre(aux,nombreStr)||
+            employee_setHorasTrabajadasStr(aux,horasTrabajadasStr)||
+            employee_setSueldoStr(aux,sueldoStr))
+        {
+            employee_delete(aux);
+            aux=NULL;
+        }
     }
     return aux;
 }
@@ -38,12 +42,15 @@ int employee_setIdStr(Employee* this,char* idStr)
 {
     int ret=-1;
     int bufferId;
-    if(this!=NULL)
+    if(this!=NULL && idStr!=NULL)
     {
         if(utn_isValidInt(idStr))
         {
             bufferId = atoi(idStr);
-            employee_setId(this,bufferId);
+            if(!employee_setId(this,bufferId))
+            {
+                ret=0;
+            }
         }
     }
     return ret;
@@ -52,7 +59,7 @@ int employee_setIdStr(Employee* this,char* idStr)
 int employee_setId(Employee* this,int id)
 {
     int ret=-1;
-    if(this!=NULL)
+    if(this!=NULL && id>=0)
     {
         this->id=id;
         ret=0;
@@ -142,7 +149,10 @@ int employee_setSueldoStr(Employee* this,char* sueldoStr)
         if(utn_isValidInt(sueldoStr))
         {
             bufferSueldo = atoi(sueldoStr);
-            employee_setHorasTrabajadas(this,bufferSueldo);
+            if(!employee_setHorasTrabajadas(this,bufferSueldo))
+            {
+                ret=0;
+            }
         }
     }
     return ret;
@@ -169,5 +179,3 @@ int employee_getSueldo(Employee* this,int* sueldo)
     }
     return ret;
 }
-
-

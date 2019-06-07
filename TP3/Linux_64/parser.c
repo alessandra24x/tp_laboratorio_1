@@ -19,12 +19,9 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
     char bufferSueldo[4096];
     Employee *pEmpleado;
 
-    if(pFile != NULL)
+    if(pFile!=NULL && pArrayListEmployee!=NULL)
     {
-        fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",  bufferId,
-                                                    bufferNombre,
-                                                    bufferHorasTrabajadas,
-                                                    bufferSueldo);
+        fscanf(pFile,"[^\n]\n");
         while(!feof(pFile))
         {
             fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",  bufferId,
@@ -36,7 +33,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 
             if(pEmpleado != NULL)
             {
-                if(ll_add(pArrayListEmployee,pEmpleado))
+                if(!ll_add(pArrayListEmployee,pEmpleado))
                 {
                     ret++;
                 }
@@ -55,6 +52,32 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
  */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
+    int ret= 0;
+    Employee *pEmpleado;
 
-    return 1;
+    if(pFile!=NULL && pArrayListEmployee!=NULL)
+    {
+        do
+        {
+            pEmpleado = employee_new();
+            if(pEmpleado != NULL)
+            {
+                if(fread(pEmpleado,sizeof(Employee),1,pFile))
+                {
+
+                    if(!ll_add(pArrayListEmployee,pEmpleado))
+                    {
+                        ret++;
+                    }
+
+                }
+                else
+                {
+                    employee_delete(pEmpleado);
+                }
+            }
+        }
+        while(!feof(pFile));
+    }
+    return ret;
 }
