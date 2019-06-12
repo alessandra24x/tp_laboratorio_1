@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "LinkedList.h"
+#include "Win64_LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
 
@@ -73,7 +73,14 @@ int controller_lastIdEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int ret = -1;
+    Employee* bufferEmployee;
+    bufferEmployee = employee_new();
+    if(pArrayListEmployee!=NULL && bufferEmployee!=NULL)
+    {
+
+    }
+    return ret;
 }
 
 /** \brief Modificar datos de empleado
