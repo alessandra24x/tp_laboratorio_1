@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "Win64_LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
+#include "utn.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -43,9 +45,9 @@ int controller_lastIdEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* bufferEmployee;
     int bufferId;
-    int auxId=-1;
+    int auxId = -1;
+    int ret = -1;
     int i;
-    int ret=0;
     int len;
     if(pArrayListEmployee!=NULL)
     {
@@ -60,6 +62,7 @@ int controller_lastIdEmployee(LinkedList* pArrayListEmployee)
             }
         }
         employe_idInit(auxId);
+        ret = 0;
     }
     return ret;
 }
@@ -74,10 +77,28 @@ int controller_lastIdEmployee(LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     int ret = -1;
+    char bufferNombre[128];
+    int bufferHorasTrabajadas;
+    int bufferSueldo;
     Employee* bufferEmployee;
     bufferEmployee = employee_new();
     if(pArrayListEmployee!=NULL && bufferEmployee!=NULL)
     {
+        if(!utn_getName(bufferNombre,128,"Ingrese el nombre: ","Nombre Invalido",1,127,10)&&
+           !utn_getInt(&bufferHorasTrabajadas,"Ingrese las horas trabajadas: ","Valor invalido",0,INT_MAX,10)&&
+           !utn_getInt(&bufferSueldo,"Ingrese el sueldo: ","Valor invalido",0,INT_MAX,10))
+        {
+            employee_setId(bufferEmployee,employee_idGenerator());
+            employee_setNombre(bufferEmployee,bufferNombre);
+            employee_setHorasTrabajadas(bufferEmployee,bufferHorasTrabajadas);
+            employee_setSueldo(bufferEmployee,bufferSueldo);
+
+            ll_add(pArrayListEmployee,bufferEmployee);
+        }
+        else
+        {
+            employee_delete(bufferEmployee);
+        }
 
     }
     return ret;
@@ -205,7 +226,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     int i;
     int ret=0;
     int len;
-    pf=fopen(path,"w");
+    pf=fopen(path,"wb");
     if(pArrayListEmployee!=NULL && pf!=NULL)
     {
         len=ll_len(pArrayListEmployee);

@@ -43,9 +43,14 @@ int main()
         {
             case 1:
                 printf("%d elementos cargados\n",controller_loadFromText("data.csv",listaEmpleados));
+                controller_lastIdEmployee(listaEmpleados);
                 break;
             case 2:
                 printf("%d elementos cargados\n",controller_loadFromBinary("datasavebin",listaEmpleados));
+                controller_lastIdEmployee(listaEmpleados);
+                break;
+            case 3:
+                controller_addEmployee(listaEmpleados);
                 break;
             case 6:
                 controller_ListEmployee(listaEmpleados);

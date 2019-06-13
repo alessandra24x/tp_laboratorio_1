@@ -98,7 +98,7 @@ int utn_isValidName (char* string)
     int i=0;
     for(;string[i] != '\0';i++)
     {
-        if(!isalpha(string[i]))
+        if(!isalpha(string[i]) && string[i] != ' ')
         {
             ret=0;
             break;

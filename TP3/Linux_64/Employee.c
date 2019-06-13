@@ -8,7 +8,7 @@ static int lastId=0;
 
 void employe_idInit(int id)
 {
-    lastId=id;
+    lastId=id+1;
 }
 
 int employee_idGenerator()
@@ -93,7 +93,7 @@ int employee_getId(Employee* this,int* id)
 int employee_setNombre(Employee* this,char* nombre)
 {
     int ret=-1;
-    if(this != NULL)
+    if(this != NULL && utn_isValidName(nombre))
     {
         strncpy(this->nombre,nombre,sizeof(this->nombre));
         ret=0;

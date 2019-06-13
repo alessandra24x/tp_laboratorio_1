@@ -98,12 +98,14 @@
 	<ctype.h>
 	"utn.h"
 
-1560343707 source:c:\venv\tp_laboratorio_1\tp3\linux_64\controller.c
+1560434322 source:c:\venv\tp_laboratorio_1\tp3\linux_64\controller.c
 	<stdio.h>
 	<stdlib.h>
+	<limits.h>
 	"Win64_LinkedList.h"
 	"Employee.h"
 	"parser.h"
+	"utn.h"
 
 1560334423 c:\venv\tp_laboratorio_1\tp3\linux_64\linkedlist.h
 
@@ -111,7 +113,7 @@
 
 1560334423 c:\venv\tp_laboratorio_1\tp3\linux_64\parser.h
 
-1560339570 source:c:\venv\tp_laboratorio_1\tp3\linux_64\employee.c
+1560434234 source:c:\venv\tp_laboratorio_1\tp3\linux_64\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -120,7 +122,7 @@
 
 1560334423 c:\venv\tp_laboratorio_1\tp3\linux_64\utn.h
 
-1560343697 source:c:\venv\tp_laboratorio_1\tp3\linux_64\main.c
+1560434125 source:c:\venv\tp_laboratorio_1\tp3\linux_64\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Win64_LinkedList.h"
@@ -136,7 +138,7 @@
 	"Win64_LinkedList.h"
 	"Employee.h"
 
-1560334423 source:c:\venv\tp_laboratorio_1\tp3\linux_64\utn.c
+1560422500 source:c:\venv\tp_laboratorio_1\tp3\linux_64\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
