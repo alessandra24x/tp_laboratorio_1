@@ -147,3 +147,53 @@
 
 1533133022 c:\venv\tp_laboratorio_1\tp3\linux_64\win64_linkedlist.h
 
+1560556462 source:/home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"utn.h"
+	"Controller.h"
+
+1560549275 /home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/Linux64_LinkedList.h
+
+1560549275 /home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/Employee.h
+
+1560549275 /home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/parser.h
+
+1560550416 /home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/utn.h
+
+1560549275 source:/home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/Employee.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"Employee.h"
+
+1560556501 source:/home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"utn.h"
+
+1560554894 /home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/Controller.h
+
+1560550599 source:/home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1560550419 source:/home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1560549275 /home/matiasmurray/Repos/tp_laboratorio_1/TP3/Linux_64/LinkedList.h
+

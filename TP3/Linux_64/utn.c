@@ -4,6 +4,17 @@
 #include <ctype.h>
 #include "utn.h"
 
+void myPause(void)
+{
+    printf("...");
+    getchar();
+}
+
+void clrscr(void)
+{
+    system("@cls||clear");
+}
+
 int utn_getString(  char *pResult,
                     char *pMsg,
                     char *pMsgError,

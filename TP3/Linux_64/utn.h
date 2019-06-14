@@ -1,6 +1,10 @@
 #ifndef UTN_H_INCLUDED
 #define UTN_H_INCLUDED
 
+void myPause(void);
+
+void clrscr(void);
+
 int utn_getString(  char *pResult,
                 char *pMsg,
                 char *pMsgError,
