@@ -14,12 +14,12 @@
  * \return int
  *
  */
-int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
+int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
     int ret=0;
     FILE* pFile;
     pFile = fopen(path,"r");
-    ret=parser_EmployeeFromText(pFile , pArrayListEmployee);
+    ret=parser_EmployeeFromText(pFile, pArrayListEmployee);
     fclose(pFile);
     return ret;
 }
@@ -31,12 +31,12 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
+int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 {
     int ret=0;
     FILE* pFile;
     pFile = fopen(path,"rb");
-    ret=parser_EmployeeFromBinary(pFile , pArrayListEmployee);
+    ret=parser_EmployeeFromBinary(pFile, pArrayListEmployee);
     fclose(pFile);
     return ret;
 }
@@ -58,7 +58,7 @@ int controller_lastIdEmployee(LinkedList* pArrayListEmployee)
     if(pArrayListEmployee!=NULL)
     {
         len=ll_len(pArrayListEmployee);
-        for(i=0;i<len;i++)
+        for(i=0; i<len; i++)
         {
             bufferEmployee=(Employee*)ll_get(pArrayListEmployee,i);
             employee_getId(bufferEmployee,&bufferId);
@@ -91,7 +91,7 @@ int controller_searchEmployeeById(LinkedList* pArrayListEmployee,int id,int* ind
     if(pArrayListEmployee!=NULL)
     {
         len=ll_len(pArrayListEmployee);
-        for(i=0;i<len;i++)
+        for(i=0; i<len; i++)
         {
             bufferEmployee=(Employee*)ll_get(pArrayListEmployee,i);
             employee_getId(bufferEmployee,&bufferId);
@@ -123,8 +123,8 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     if(pArrayListEmployee!=NULL && bufferEmployee!=NULL)
     {
         if(!utn_getName(bufferNombre,128,"Ingrese el nombre: ","Nombre Invalido",1,127,10)&&
-           !utn_getInt(&bufferHorasTrabajadas,"Ingrese las horas trabajadas: ","Valor invalido",0,INT_MAX,10)&&
-           !utn_getInt(&bufferSueldo,"Ingrese el sueldo: ","Valor invalido",0,INT_MAX,10))
+                !utn_getInt(&bufferHorasTrabajadas,"Ingrese las horas trabajadas: ","Valor invalido",0,INT_MAX,10)&&
+                !utn_getInt(&bufferSueldo,"Ingrese el sueldo: ","Valor invalido",0,INT_MAX,10))
         {
             employee_setId(bufferEmployee,employee_idGenerator());
             employee_setNombre(bufferEmployee,bufferNombre);
@@ -154,50 +154,58 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     int ret = -1;
     if(pArrayListEmployee != NULL)
     {
-        char bufferNombre[128];
-        int bufferHorasTrabajadas;
-        int bufferSueldo;
-        Employee* bufferEmployee;
-        int option;
-        int auxIndex;
-        int auxId;
-        if( !utn_getInt(&auxId,"Ingrese ID del empleado: ","Valor invalido",0,INT_MAX,10)&&
-            !controller_searchEmployeeById(pArrayListEmployee,auxId,&auxIndex))
+        if(ll_len(pArrayListEmployee))
         {
-            do
+            char bufferNombre[128];
+            int bufferHorasTrabajadas;
+            int bufferSueldo;
+            Employee* bufferEmployee;
+            int option;
+            int auxIndex;
+            int auxId;
+            if( !utn_getInt(&auxId,"Ingrese ID del empleado: ","Valor invalido",0,INT_MAX,10)&&
+                    !controller_searchEmployeeById(pArrayListEmployee,auxId,&auxIndex))
             {
-            clrscr();
-            bufferEmployee = (Employee*)ll_get(pArrayListEmployee,auxIndex);
-            controller_PrintEmployeeWithFields(pArrayListEmployee,auxIndex);
-            printf("4. Salir.");
-            utn_getInt(&option,"\nSeleccione campo a modificar: ","Valor invalido",1,5,10);
-            switch(option)
-            {
-                case 1:
-                    if(!utn_getName(bufferNombre,128,"Ingrese el nombre: ","Nombre Invalido",1,127,10))
+                do
+                {
+                    clrscr();
+                    bufferEmployee = (Employee*)ll_get(pArrayListEmployee,auxIndex);
+                    controller_PrintEmployeeWithFields(pArrayListEmployee,auxIndex);
+                    printf("4. Salir.");
+                    utn_getInt(&option,"\nSeleccione campo a modificar: ","Valor invalido",1,5,10);
+                    switch(option)
                     {
-                        employee_setNombre(bufferEmployee,bufferNombre);
+                    case 1:
+                        if(!utn_getName(bufferNombre,128,"Ingrese el nombre: ","Nombre Invalido",1,127,10))
+                        {
+                            employee_setNombre(bufferEmployee,bufferNombre);
+                        }
+                        break;
+                    case 2:
+                        if(!utn_getInt(&bufferHorasTrabajadas,"Ingrese las horas trabajadas: ","Valor invalido",0,INT_MAX,10))
+                        {
+                            employee_setHorasTrabajadas(bufferEmployee,bufferHorasTrabajadas);
+                        }
+                        break;
+                    case 3:
+                        if(!utn_getInt(&bufferSueldo,"Ingrese el sueldo: ","Valor invalido",0,INT_MAX,10))
+                        {
+                            employee_setSueldo(bufferEmployee,bufferSueldo);
+                        }
+                        break;
                     }
-                    break;
-                case 2:
-                    if(!utn_getInt(&bufferHorasTrabajadas,"Ingrese las horas trabajadas: ","Valor invalido",0,INT_MAX,10))
-                    {
-                        employee_setHorasTrabajadas(bufferEmployee,bufferHorasTrabajadas);
-                    }
-                    break;
-                case 3:
-                    if(!utn_getInt(&bufferSueldo,"Ingrese el sueldo: ","Valor invalido",0,INT_MAX,10))
-                    {
-                        employee_setSueldo(bufferEmployee,bufferSueldo);
-                    }
-                    break;
+                }
+                while(option!=4);
+                ret=0;
             }
-            }while(option!=4);
-            ret=0;
+            else
+            {
+                printf("Id invalido.");
+            }
         }
         else
         {
-            printf("Id invalido.");
+            printf("No existen registros cargados.");
         }
     }
     return ret;
@@ -215,37 +223,45 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     int ret = -1;
     if(pArrayListEmployee != NULL)
     {
-        Employee* bufferEmployee;
-        int option;
-        int auxIndex;
-        int auxId;
-        if( !utn_getInt(&auxId,"Ingrese ID del empleado: ","Valor invalido",0,INT_MAX,10)&&
-            !controller_searchEmployeeById(pArrayListEmployee,auxId,&auxIndex))
+        if(ll_len(pArrayListEmployee)>0)
         {
-            do
+            Employee* bufferEmployee;
+            int option;
+            int auxIndex;
+            int auxId;
+            if( !utn_getInt(&auxId,"Ingrese ID del empleado: ","Valor invalido",0,INT_MAX,10)&&
+                    !controller_searchEmployeeById(pArrayListEmployee,auxId,&auxIndex))
             {
-            clrscr();
-            bufferEmployee = (Employee*)ll_get(pArrayListEmployee,auxIndex);
-            printf("Desea eliminar el siguiente registro?\n");
-            controller_PrintEmployeeWithFields(pArrayListEmployee,auxIndex);
-            utn_getInt(&option,"[1. Aceptar / 2.Cancelar]: ","Valor invalido",1,2,10);
-            switch(option)
-            {
-                case 1:
-                    employee_delete(bufferEmployee);
-                    ll_remove(pArrayListEmployee,auxIndex);
-                    printf("Registro eliminado");
-                    break;
-                case 2:
-                    printf("Operacion cancelada.");
-                    break;
+                do
+                {
+                    clrscr();
+                    bufferEmployee = (Employee*)ll_get(pArrayListEmployee,auxIndex);
+                    printf("Desea eliminar el siguiente registro?\n");
+                    controller_PrintEmployeeWithFields(pArrayListEmployee,auxIndex);
+                    utn_getInt(&option,"[1. Aceptar / 2.Cancelar]: ","Valor invalido",1,2,10);
+                    switch(option)
+                    {
+                    case 1:
+                        employee_delete(bufferEmployee);
+                        ll_remove(pArrayListEmployee,auxIndex);
+                        printf("Registro eliminado");
+                        break;
+                    case 2:
+                        printf("Operacion cancelada.");
+                        break;
+                    }
+                }
+                while(option!=1 && option!=2);
+                ret=0;
             }
-            }while(option!=1 && option!=2);
-            ret=0;
+            else
+            {
+                printf("Id invalido.");
+            }
         }
         else
         {
-            printf("Id invalido.");
+            printf("No existen registros cargados.");
         }
     }
     return ret;
@@ -265,12 +281,19 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     int len;
     if(pArrayListEmployee!=NULL)
     {
-        len=ll_len(pArrayListEmployee);
-        for(i=0;i<len;i++)
+        if(ll_len(pArrayListEmployee)>0)
         {
-            controller_PrintEmployee(pArrayListEmployee,i);
+            len=ll_len(pArrayListEmployee);
+            for(i=0; i<len; i++)
+            {
+                controller_PrintEmployee(pArrayListEmployee,i);
+            }
+            ret=0;
         }
-        ret=0;
+        else
+        {
+            printf("No existen registros cargados.");
+        }
     }
     return ret;
 }
@@ -341,7 +364,60 @@ int controller_PrintEmployeeWithFields(LinkedList* pArrayListEmployee, int index
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int ret = -1;
+    if(pArrayListEmployee != NULL)
+    {
+        int order;
+        int option;
+        if(ll_len(pArrayListEmployee)>0)
+        {
+            clrscr();
+            if(!utn_getInt(&option,"Seleccione criterio para ordenar:\n1.Id\n2.Nombre\n3.Horas Trabajadas\n4.Sueldo\n-> ","Opcion invalida\n",1,4,10))
+            {
+                clrscr();
+                if(!utn_getInt(&order,"Seleccione orden:\n1.Ascendente\n2.Descendente\n-> ","Opcion invalida\n",1,2,10))
+                {
+                    if(order==2)
+                    {
+                        order=0;
+                    }
+                    switch(option)
+                    {
+                    case 1:
+                        ll_sort(pArrayListEmployee,employee_compareId,order);
+                        break;
+                    case 2:
+                        ll_sort(pArrayListEmployee,employee_compareId,order);
+                        ll_sort(pArrayListEmployee,employee_compareNombre,order);
+                        break;
+                    case 3:
+                        ll_sort(pArrayListEmployee,employee_compareId,order);
+                        ll_sort(pArrayListEmployee,employee_compareHorasTrabajadas,order);
+                        break;
+                    case 4:
+                        ll_sort(pArrayListEmployee,employee_compareId,order);
+                        ll_sort(pArrayListEmployee,employee_compareSueldo,order);
+                        break;
+                    }
+                    ret = 0;
+                    printf("Operacion completada");
+                }
+                else
+                {
+                    printf("Demasiados intentos erroneos, operacion cancelada.");
+                }
+            }
+            else
+            {
+                printf("Demasiados intentos erroneos, operacion cancelada.");
+            }
+        }
+        else
+        {
+            printf("No existen registros cargados.");
+        }
+    }
+    return ret;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
@@ -351,7 +427,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
+int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
     Employee* bufferEmployee;
     FILE* pf;
@@ -367,7 +443,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
     {
         fprintf(pf,"id,nombre,horasTrabajadas,sueldo\n");
         len=ll_len(pArrayListEmployee);
-        for(i=0;i<len;i++)
+        for(i=0; i<len; i++)
         {
             bufferEmployee=(Employee*)ll_get(pArrayListEmployee,i);
             employee_getId(bufferEmployee,&bufferId);
@@ -389,7 +465,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
+int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
     Employee* bufferEmployee;
     FILE* pf;
@@ -400,7 +476,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     if(pArrayListEmployee!=NULL && pf!=NULL)
     {
         len=ll_len(pArrayListEmployee);
-        for(i=0;i<len;i++)
+        for(i=0; i<len; i++)
         {
             bufferEmployee=(Employee*)ll_get(pArrayListEmployee,i);
             fwrite(bufferEmployee,sizeof(Employee),1,pf);

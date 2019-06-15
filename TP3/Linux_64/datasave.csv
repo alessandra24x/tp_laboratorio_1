@@ -387,7 +387,6 @@ id,nombre,horasTrabajadas,sueldo
 386,Demeter,10000,0
 387,Juliann,50000,0
 388,Shauna,25000,0
-389,Anna-maria,42000,0
 390,Ag,50000,0
 391,Sherwin,50000,0
 392,Vikki,33000,0
@@ -526,7 +525,6 @@ id,nombre,horasTrabajadas,sueldo
 525,Edan,20000,0
 526,Homer,10000,0
 527,Eveline,37000,0
-528,Helen-elizabeth,20000,0
 529,Daveta,20000,0
 530,Mort,42000,0
 531,Maxi,37000,0
@@ -670,7 +668,6 @@ id,nombre,horasTrabajadas,sueldo
 669,Beverlee,25000,0
 670,Arlette,30000,0
 671,Jacqueline,50000,0
-672,Sheila-kathryn,10000,0
 673,Lambert,42000,0
 674,Lamont,33000,0
 675,Immanuel,33000,0
@@ -998,4 +995,5 @@ id,nombre,horasTrabajadas,sueldo
 997,De witt,12000,0
 998,Jaye,25000,0
 999,Tamarra,15000,0
-1000,Saleem,20000,0
+1000,Saleem,20000,1
+1001,pepe,1,12000

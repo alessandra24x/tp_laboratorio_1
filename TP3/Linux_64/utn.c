@@ -163,6 +163,7 @@ int utn_getInt( int *pResult,
                 }
             }
         }
+        attempts--;
     }
     return ret;
 }
@@ -197,6 +198,7 @@ int utn_getFloat(   float *pResult,
                 }
             }
         }
+        attempts--;
     }
     return ret;
 }
@@ -223,6 +225,7 @@ int utn_getName(    char *pResult,
                 break;
             }
         }
+        attempts--;
     }
     return ret;
 }
@@ -249,6 +252,7 @@ int utn_getAddress( char *pResult,
                 break;
             }
         }
+        attempts--;
     }
     return ret;
 }

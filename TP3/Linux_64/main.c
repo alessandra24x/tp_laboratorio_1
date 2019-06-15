@@ -70,8 +70,12 @@ int main()
                 controller_ListEmployee(listaEmpleados);
                 myPause();
                 break;
+            case 7:
+                controller_sortEmployee(listaEmpleados);
+                myPause();
+                break;
             case 8:
-                printf("%d elementos guardados\n",controller_saveAsText("datasave.csv",listaEmpleados));
+                printf("%d elementos guardados\n",controller_saveAsText("data.csv",listaEmpleados));
                 myPause();
                 break;
             case 9:

@@ -28,9 +28,9 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
     if(aux!=NULL)
     {
         if( employee_setIdStr(aux,idStr)||
-            employee_setNombre(aux,nombreStr)||
-            employee_setHorasTrabajadasStr(aux,horasTrabajadasStr)||
-            employee_setSueldoStr(aux,sueldoStr))
+                employee_setNombre(aux,nombreStr)||
+                employee_setHorasTrabajadasStr(aux,horasTrabajadasStr)||
+                employee_setSueldoStr(aux,sueldoStr))
         {
             employee_delete(aux);
             aux=NULL;
@@ -188,6 +188,62 @@ int employee_getSueldo(Employee* this,int* sueldo)
     {
         *sueldo=this->sueldo;
         ret=0;
+    }
+    return ret;
+}
+
+int employee_compareId(void* pEmployeeA,void* pEmployeeB)
+{
+    int ret = 0;
+    if(((Employee*)pEmployeeA)->id > ((Employee*)pEmployeeB)->id)
+    {
+        ret = 1;
+    }
+    if(((Employee*)pEmployeeA)->id < ((Employee*)pEmployeeB)->id)
+    {
+        ret = -1;
+    }
+    return ret;
+}
+
+int employee_compareHorasTrabajadas(void* pEmployeeA,void* pEmployeeB)
+{
+    int ret = 0;
+    if(((Employee*)pEmployeeA)->horasTrabajadas > ((Employee*)pEmployeeB)->horasTrabajadas)
+    {
+        ret = 1;
+    }
+    if(((Employee*)pEmployeeA)->horasTrabajadas < ((Employee*)pEmployeeB)->horasTrabajadas)
+    {
+        ret = -1;
+    }
+    return ret;
+}
+
+int employee_compareSueldo(void* pEmployeeA,void* pEmployeeB)
+{
+    int ret = 0;
+    if(((Employee*)pEmployeeA)->sueldo > ((Employee*)pEmployeeB)->sueldo)
+    {
+        ret = 1;
+    }
+    if(((Employee*)pEmployeeA)->sueldo < ((Employee*)pEmployeeB)->sueldo)
+    {
+        ret = -1;
+    }
+    return ret;
+}
+
+int employee_compareNombre(void* pEmployeeA,void* pEmployeeB)
+{
+    int ret = 0;
+    if(strcmp(((Employee*)pEmployeeA)->nombre,((Employee*)pEmployeeB)->nombre)>0)
+    {
+        ret = 1;
+    }
+    if(strcmp(((Employee*)pEmployeeA)->nombre,((Employee*)pEmployeeB)->nombre)<0)
+    {
+        ret = -1;
     }
     return ret;
 }
