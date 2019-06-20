@@ -6,6 +6,7 @@
 
 static Node* getNode(LinkedList* this, int nodeIndex);
 static int addNode(LinkedList* this, int nodeIndex,void* pElement);
+static void swapNode(Node *a,Node *b);
 
 /** \brief Crea un nuevo LinkedList en memoria de manera dinamica
  *
@@ -57,7 +58,7 @@ static Node* getNode(LinkedList* this, int nodeIndex)
     if(this != NULL &&nodeIndex >= 0 && nodeIndex < ll_len(this))
     {
         pNode = this->pFirstNode;
-        for(i=0;i<nodeIndex;i++)
+        for(i=0; i<nodeIndex; i++)
         {
             pNode = pNode->pNextNode;
         }
@@ -86,7 +87,7 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
  * \param pElement void* Puntero al elemento a ser contenido por el nuevo nodo
  * \return int Retorna  (-1) Error: si el puntero a la lista es NULL o (si el indice es menor a 0 o mayor al len de la lista)
                         ( 0) Si funciono correctamente
- *
+ *getNode(this,index+1)
  */
 static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
@@ -284,7 +285,7 @@ int ll_indexOf(LinkedList* this, void* pElement)
     Node* pBufferNode;
     if(this != NULL)
     {
-        for(i=0;i<ll_len(this);i++)
+        for(i=0; i<ll_len(this); i++)
         {
             pBufferNode = getNode(this,i);
             if(pBufferNode->pElement==pElement)
@@ -371,7 +372,7 @@ int ll_contains(LinkedList* this, void* pElement)
     if(this != NULL)
     {
         returnAux = 0;
-        for(i=0;i<ll_len(this);i++)
+        for(i=0; i<ll_len(this); i++)
         {
             if(pElement==ll_get(this,i))
             {
@@ -399,7 +400,7 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
     {
         int i;
         returnAux = 1;
-        for(i=0;i<ll_len(this2);i++)
+        for(i=0; i<ll_len(this2); i++)
         {
             if(!ll_contains(this,ll_get(this2,i)))
             {
@@ -428,7 +429,7 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     if(this != NULL && from >= 0 && from < ll_len(this) && to >= from && to <= ll_len(this))
     {
         cloneArray = ll_newLinkedList();
-        for(i=from;i<to;i++)
+        for(i=from; i<to; i++)
         {
             ll_add(cloneArray,ll_get(this,i));
         }
@@ -451,7 +452,7 @@ LinkedList* ll_clone(LinkedList* this)
     if(this != NULL)
     {
         cloneArray = ll_newLinkedList();
-        for(i=0;i<ll_len(this);i++)
+        for(i=0; i<ll_len(this); i++)
         {
             ll_add(cloneArray,ll_get(this,i));
         }
@@ -467,11 +468,113 @@ LinkedList* ll_clone(LinkedList* this)
  * \return int Retorna  (-1) Error: si el puntero a la listas es NULL
                                 ( 0) Si ok
  */
-int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
+int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order)
 {
     int returnAux =-1;
+    int swap;
+    int i;
+    Node* buffer1;
+    Node* buffer2;
+    if(this != NULL && pFunc != NULL && ll_len(this)>1 && (order==1 || order==0))
+    {
+        do
+        {
+            swap=0;
+            for(i=0;i<ll_len(this)-1;i++)
+            {
+                buffer1 = getNode(this,i);
+                buffer2 = getNode(this,i+1);
+                if(order==0 && pFunc(buffer1->pElement,buffer2->pElement)<0)
+                {
+                    swapNode(buffer1,buffer2);
+                    swap=1;
+                }
+                if(order==1 && pFunc(buffer1->pElement,buffer2->pElement)>0)
+                {
+                    swapNode(buffer1,buffer2);
+                    swap=1;
+                }
+            }
+        }while(swap!=0);
 
+        returnAux = 0;
+    }
     return returnAux;
-
 }
 
+static void swapNode(Node *a,Node *b)
+{
+    void* temp = a->pElement;
+    a->pElement = b->pElement;
+    b->pElement = temp;
+}
+
+/** \brief Prueba todos los elementos de la lista con la funcion criterio recibida
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \return int Retorna  (-1) Error: si el puntero a la lista o a la funcion es NULL
+                        ( 0) Si ok
+ */
+int ll_map(LinkedList* this, int (*pFunc)(void*))
+{
+    int returnAux = -1;
+    int i;
+    if(this != NULL && pFunc != NULL)
+    {
+        returnAux = 0;
+        for(i=0;i<ll_len(this);i++)
+        {
+            if(!pFunc(ll_get(this,i)))
+            {
+                returnAux = -1;
+            }
+        }
+    }
+    return returnAux;
+}
+
+/** \brief Borra de la lista los elementos que no cumplan con la funcion criterio.
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \return int Retorna  (-1) Error: si el puntero a la listas o a la funcion es NULL
+                        ( 0) Si ok
+ */
+int ll_reduce(LinkedList* this, int (*pFunc)(void*))
+{
+    int returnAux = -1;
+    int i;
+    Node* buffer;
+    if(this != NULL && pFunc != NULL)
+    {
+        i=0;
+        do
+        {
+            buffer=getNode(this,i);
+            if(!pFunc(buffer->pElement))
+            {
+                ll_remove(this,i);
+                continue;
+            }
+            i++;
+        }while(buffer->pNextNode!=NULL);
+    }
+    return returnAux;
+}
+
+LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void*))
+{
+    LinkedList* returnAux;
+    int i;
+    if(this != NULL && pFunc != NULL)
+    {
+        returnAux = ll_newLinkedList();
+        for(i=0;i<ll_len(this);i++)
+        {
+            if(pFunc(ll_get(this,i)))
+            {
+                ll_add(returnAux,ll_get(this,i));
+            }
+        }
+    }
+    return returnAux;
+}
