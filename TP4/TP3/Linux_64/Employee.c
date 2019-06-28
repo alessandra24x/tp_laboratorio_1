@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utn.h"
-#include "Venta.h"
+#include "Employee.h"
 
 static int lastId=0;
 
